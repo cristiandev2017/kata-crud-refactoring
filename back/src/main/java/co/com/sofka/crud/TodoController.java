@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.*;
 public class TodoController {
 
     @Autowired
-    private TodoService service;
+    private DTO service;
 
     @GetMapping(value = "api/todos")
     public Iterable<Todo> list(){
         return service.list();
     }
     
-    @PostMapping(value = "api/todo")
+    @PostMapping(value = "api/save")
     public Todo save(@RequestBody Todo todo){
         return service.save(todo);
     }
 
-    @PutMapping(value = "api/todo")
+    @PutMapping(value = "api/update")
     public Todo update(@RequestBody Todo todo){
         if(todo.getId() != null){
             return service.save(todo);
