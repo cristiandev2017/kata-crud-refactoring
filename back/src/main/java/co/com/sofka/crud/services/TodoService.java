@@ -1,13 +1,17 @@
-package co.com.sofka.crud;
+package co.com.sofka.crud.services;
 
+import co.com.sofka.crud.DAO;
+import co.com.sofka.crud.entity.Todo;
+import co.com.sofka.crud.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService implements DTO {
+public class TodoService implements DAO {
 
     @Autowired
     private TodoRepository repository;
+
 
     public Iterable<Todo> list(){
         return repository.findAll();

@@ -31,9 +31,10 @@ class List extends Component{
                     <td>¿Completado?</td>
                 </tr>
            </thead>
-   <tbody>
-       { this.state.lists.map(list => <li>{list.id}</li>)}
-
+        <tbody>
+          <tr>
+       { this.state.lists.map(list => <td>{list.id}</td>)}
+         </tr>
             </tbody>
         </table>
       </div>
