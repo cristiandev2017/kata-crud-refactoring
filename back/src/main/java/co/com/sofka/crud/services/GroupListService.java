@@ -16,21 +16,21 @@ public class GroupListService implements DAOGroup {
 
     @Override
     public Iterable<GroupList> list() {
-        return null;
+        return grouprepository.findAll();
     }
 
     @Override
     public GroupList save(GroupList groupList) {
-        return null;
+        return grouprepository.save(groupList);
     }
 
     @Override
     public void delete(Long id) {
-
+        grouprepository.delete(get(id));
     }
 
     @Override
     public GroupList get(Long id) {
-        return null;
+        return grouprepository.findById(id).orElseThrow();
     }
 }
