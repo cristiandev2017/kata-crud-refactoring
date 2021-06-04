@@ -18,6 +18,7 @@ const Form = () => {
       name: state.name,
       id: null,
       completed: false,
+      groupid:null,
     };
 
     fetch(HOST_API + "/save", {
