@@ -1,30 +1,44 @@
 package co.com.sofka.crud.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name="grouplist")
 public class GroupList {
-
     @Id
     @GeneratedValue
-    private Long id;
-    private String name;
+    private Long idgroup;
+    private String namegroup;
 
-    public Long getId() {
-        return id;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "groupid")
+    //Se instancia la entidad
+    private Set<Todo> todo;
+
+    public Set<Todo> getTodo() {
+        return todo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTodo(Set<Todo> todo) {
+        this.todo = todo;
     }
 
-    public String getName() {
-        return name;
+
+    public Long getIdgroup() {
+        return idgroup;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdgroup(Long idgroup) {
+        this.idgroup = idgroup;
+    }
+
+    public String getNamegroup() {
+        return namegroup;
+    }
+
+    public void setNamegroup(String namegroup) {
+        this.namegroup = namegroup;
     }
 }
