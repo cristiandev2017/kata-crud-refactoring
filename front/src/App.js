@@ -1,12 +1,16 @@
-import React,{Component} from 'react';
-import List from './components/list'
+import React from 'react';
+import {StoreProvider} from './components/Store';
+import List from './components/List';
+import Form from './components/Form';
 
-const HOST_API = "http://localhost:8080/api";
-class App extends Component{
-  render(){
-    return <List />
-  }
+function App(){
+  return(
+    <StoreProvider>
+      <h2>Se separa por componentes</h2>
+      <Form/>
+      <List />
+    </StoreProvider>
+  )
 }
-
 
 export default App;

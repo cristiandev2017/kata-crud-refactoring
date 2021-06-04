@@ -1,47 +1,91 @@
-import React, {Component} from 'react';
-//Se utiliza axios como facilitador de peticiones al servidor
-import axios from 'axios';
+import React, { useContext, useEffect } from "react";
+import Store from "./Store";
+const HOST_API ="http://localhost:8080/api";
 
-//Se obtiene pone como constante la constante con la URL de la aplicacion
-const HOST_API = "http://localhost:8080/api";
-//Se crea la clase List con las propiedades de un componente de React
-class List extends Component{
-    //Se utiliza state con un arreglo vacio el cual me guardara la lista
-    state = {
-    lists: []
-  }
-  //Este metodo lo que hace es que cuando el componente este cargado ejecuta la funcion que le mandemos
-  componentDidMount() {
-    axios.get(HOST_API + "/todos")
-      .then(res => {
-        const lists = res.data;
-        //Se almacenara la lista de los elementos
-        this.setState({ lists });
-      })
-  }
-    //Por ultimo haremos render a la pagina principal(Tabla)
-    render() {
-        return (
-      <div>
-        <table>
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Tarea</td>
-                    <td>¿Completado?</td>
-                </tr>
-           </thead>
-        <tbody>
+const List = () => {
+  const {
+    dispatch,
+    state: { todo },
+  } = useContext(Store);
+  const currentList = todo.list;
+
+  useEffect(() => {
+    fetch(HOST_API + "/todos")
+      .then((response) => response.json())
+      .then((list) => {
+        dispatch({ type: "update-list", list });
+      });
+  }, [dispatch]);
+
+  const onDelete = (id) => {
+    fetch(HOST_API + "/" + id + "/todo", {
+      method: "DELETE",
+    }).then((list) => {
+      dispatch({ type: "delete-item", id });
+    });
+  };
+
+  const onEdit = (todo) => {
+    dispatch({ type: "edit-item", item: todo });
+  };
+
+  const onChange = (event, todo) => {
+    const request = {
+      name: todo.name,
+      id: todo.id,
+      completed: event.target.checked,
+    };
+    fetch(HOST_API + "/todo", {
+      method: "PUT",
+      body: JSON.stringify(request),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((todo) => {
+        dispatch({ type: "update-item", item: todo });
+      });
+  };
+
+  const decorationDone = {
+    textDecoration: "line-through",
+  };
+  return (
+    <div>
+      <table>
+        <thead>
           <tr>
-       { this.state.lists.map(list => <td>{list.id}</td>)}
-         </tr>
-            </tbody>
-        </table>
-      </div>
-    )
-  }
-}
-
- //{ this.state.lists.map(list => <li>{list.id}</li>)}
-
+            <td>ID</td>
+            <td>Tarea</td>
+            <td>¿Completado?</td>
+          </tr>
+        </thead>
+        <tbody>
+          {currentList.map((todo) => {
+            return (
+              <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
+                <td>{todo.id}</td>
+                <td>{todo.name}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    defaultChecked={todo.completed}
+                    onChange={(event) => onChange(event, todo)}
+                  ></input>
+                </td>
+                <td>
+                  <button onClick={() => onDelete(todo.id)}>Eliminar</button>
+                </td>
+                <td>
+                  <button onClick={() => onEdit(todo)}>Editar</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 export default List;
