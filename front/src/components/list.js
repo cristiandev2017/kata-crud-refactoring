@@ -35,7 +35,7 @@ const List = () => {
       id: todo.id,
       completed: event.target.checked,
     };
-    fetch(HOST_API + "/todo", {
+    fetch(HOST_API + "/update", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {

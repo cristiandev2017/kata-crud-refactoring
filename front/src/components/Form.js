@@ -20,7 +20,7 @@ const Form = () => {
       completed: false,
     };
 
-    fetch(HOST_API + "/todo", {
+    fetch(HOST_API + "/save", {
       method: "POST",
       body: JSON.stringify(request),
       headers: {
@@ -44,7 +44,7 @@ const Form = () => {
       isCompleted: item.isCompleted,
     };
 
-    fetch(HOST_API + "/todo", {
+    fetch(HOST_API + "/update", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
