@@ -20,7 +20,7 @@ public class GroupListService implements DAOGroup {
     }
 
     @Override
-    public GroupList save(GroupList todo) {
+    public GroupList save(GroupList groupList) {
         return null;
     }
 

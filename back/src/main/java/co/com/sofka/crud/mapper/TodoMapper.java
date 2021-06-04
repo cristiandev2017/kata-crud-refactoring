@@ -14,6 +14,7 @@ public interface TodoMapper {
             @Mapping(source = "id",target = "id"),
             @Mapping(source = "name",target = "name"),
             @Mapping(source = "completed",target = "completed"),
+            @Mapping(source =" groupid",target = "groupid"),
     })
     //Recibe una entidad y me lo convierte en un tododto
     TodoDTO aTodoDTO(Todo todo);
