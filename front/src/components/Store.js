@@ -40,6 +40,10 @@ function reducer(state, action) {
             const todoUp = state.todo.list;
             todoUp.push(action.item);
             return { ...state, todo: { list: todoUp, item: {} } }
+        case 'add-grouplist':
+            const todoUpGroup = state.todo.list;
+            todoUpGroup.push(action.item);
+            return { ...state, todo: { list: todoUpGroup, item: {} } }
         default:
             return state;
     }
