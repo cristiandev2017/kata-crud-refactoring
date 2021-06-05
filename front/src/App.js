@@ -8,13 +8,13 @@ function App() {
   return (
     <StoreProvider>
       <center>
-        <h3>CRUD Basico REACT | SPRING-BOOT</h3>
+        <h3>RETO  REACT|SPRING-BOOT</h3>
       </center>
       <hr className="borde"></hr>
       <p>
         La siguiente aplicación tiene como objetivo generar unas tareas
         especificas. Inicialmente se tendra un crud en el cual puedes ingresar
-        tareas y{" "}
+        tareas y luego se hara de una forma mas general donde puedes tener un grupo de tareas y puedas gestionarla.
       </p>
       <div className="row">
         <div className="col-4">
