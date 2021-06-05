@@ -70,9 +70,11 @@ const Form = () => {
         onChange={(event) => {
           setState({ ...state, name: event.target.value });
         }}
+        className="form-control"
       ></input>
-      {item.id && <button onClick={onEdit}>Actualizar</button>}
-      {!item.id && <button onClick={onAdd}>Crear</button>}
+      {item.id && <button onClick={onEdit} className="btn btn-primary">Actualizar</button>}
+      
+      {!item.id && <button onClick={onAdd} className="btn btn-primary form-control">Crear</button>}
     </form>
   );
 };

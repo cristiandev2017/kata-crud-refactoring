@@ -53,12 +53,14 @@ const List = () => {
   };
   return (
     <div>
-      <table>
+      <table className="table table-hover">
         <thead>
           <tr>
             <td>ID</td>
             <td>Tarea</td>
             <td>¿Completado?</td>
+            <td></td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -75,16 +77,17 @@ const List = () => {
                   ></input>
                 </td>
                 <td>
-                  <button onClick={() => onDelete(todo.id)}>Eliminar</button>
+                  <button className="btn btn-danger" onClick={() => onDelete(todo.id)}>Eliminar</button>
                 </td>
                 <td>
-                  <button onClick={() => onEdit(todo)}>Editar</button>
+                  <button className="btn btn-success" onClick={() => onEdit(todo)}>Editar</button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      
     </div>
   );
 };
